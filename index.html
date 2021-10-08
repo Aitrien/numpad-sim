@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>NUMULATOR</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="style.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <main>
+            <div id="container">
+                <div id="display"></div>
+                <button class="clear" value="clear" data-key="NumLock">C</button>
+                <button class="operator" value="/" data-key="NumpadDivide">/</button>
+                <button class="operator" value="*" data-key="NumpadMultiply">*</button>
+                <button class="operator" value="-" data-key="NumpadSubtract">-</button>
+                <button class="number" value="7" data-key="Numpad7">7</button>
+                <button class="number" value="8" data-key="Numpad8">8</button>
+                <button class="number" value="9" data-key="Numpad9">9</button>
+                <button id="add" class="operator" value="+" data-key="NumpadAdd">+</button>
+                <button class="number" value="4" data-key="Numpad4">4</button>
+                <button class="number" value="5" data-key="Numpad5">5</button>
+                <button class="number" value="6" data-key="Numpad6">6</button>
+                <button class="number" value="1" data-key="Numpad1">1</button>
+                <button class="number" value="2" data-key="Numpad2">2</button>
+                <button class="number" value="3" data-key="Numpad3">3</button>
+                <button class="equals" value="=" data-key="NumpadEnter">=</button>
+                <button id="zero" class="number" value="0" data-key="Numpad0">0</button>
+                <button class="number" value="." data-key="NumpadDecimal">.</button>
+            </div>
+        </main>
+
+        <script src="numpad.js" defer></script>
+    </body>
+</html>

@@ -1,0 +1,122 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #454540;
+}
+
+#container {
+    display: grid;
+    padding: 10px;
+    grid-template-columns: repeat(4, 75px);
+    grid-template-rows: repeat(6, 75px);
+    grid-gap: 4px;
+    width: 312px;
+    height: 470px;
+    border-radius: 4px;
+    background-color: #c9c7af;
+    box-shadow: 0 2px 30px #333;
+}
+
+#display {
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+    align-items: center;
+    grid-column: span 4;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 25px;
+    color: black;
+    padding-right: 10px;
+    background-color: #485b63;
+    border-radius: 3px;
+    border: 4px solid #494943;
+    box-shadow: 0 2px 2px #333 inset;
+}
+
+button {
+    font-family: 'Press Start 2P', cursive;
+    color: #555;
+    font-size: 25px;
+    border-radius: 3px;
+    border: none;
+    background-color: #64645c;
+    box-shadow: 0 2px 2px #888;
+}
+
+.number {
+    background-color: #eef1db;
+}
+
+.operator, .equals {
+    background-color: #edefe2;
+}
+
+.clear {
+    background-color: #ba2323;
+    color: white;
+}
+
+.selected {
+    background-color: #ffa332;
+    color: white;
+}
+
+.number:hover{
+    background-color: #e3e1c9;
+}
+
+.operator:hover, .equals:hover {
+    background-color: #e3e6d2;
+}
+
+.clear:hover {
+    background-color: #a51f1f;
+}
+
+.selected:hover {
+    background-color: #e5922d;
+}
+
+button:active, button:focus {
+    border: 2px solid #c9c7af;
+    border-radius: 5px;
+    font-size: 23px;
+    outline: none;
+    box-shadow: none;
+}
+
+.number:active, .number:focus  {
+    background-color: #eceada;
+}
+
+.operator:active, .equals:active {
+    background-color: #f7f8ed;
+}
+
+.clear:active {
+    background-color: #cf2727;
+}
+
+.selected:active {
+    background-color: #ffae4c;
+}
+
+#add {
+    grid-row: span 2;
+}
+
+.equals {
+    grid-row: span 2;
+}
+
+#zero {
+    grid-column: span 2;
+}
