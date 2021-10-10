@@ -3,11 +3,11 @@ let displayValue = "0";
 let firstNumber = null;
 let operator = null;
 let result = null;
+let secret = "🏃‍♂️ 🕳️";
 
 const buttons = document.querySelectorAll("button");
 
 buttons.forEach(button => {
-    //console.log(button.classList.contains("number"));
     button.addEventListener('click', function() {
         if (button.classList.contains("number")) {
             inputNumber(button.value);
@@ -27,7 +27,6 @@ buttons.forEach(button => {
         }
     });
 });
-
 
 function updateDisplay() {
     const display = document.querySelector("#display");
@@ -56,14 +55,6 @@ function toggleSelected(buttonValue, action) {
     
 }
 
-function printState() {
-    console.table({"displayValue": displayValue,
-                   "firstNumber": firstNumber,
-                   "operator": operator,
-                   "result": result
-                    });
-}
-
 function inputNumber(num) {
     if (operator !== null && firstNumber === null) {
         // first number after an operator has been selected
@@ -72,7 +63,7 @@ function inputNumber(num) {
         toggleSelected(operator, "remove");
         //operator = null;
     }
-    if (result !== null) {
+    if (result !== null || result === secret) {
         // resets after a calc was just made and number was pressed first
         result = null;
         displayValue = "0";
@@ -96,27 +87,24 @@ function inputNumber(num) {
 }
 
 function inputOperator(op) {
+    if (displayValue === secret) {
+        clearDisplay();
+        return;
+    }
     if (firstNumber !== null) {
-        //console.log("1");
-        // when an operator has been clicked instead of equals (not first op)
-        //console.log("calc taken");
         calculate();
         toggleSelected(operator, "remove");
         operator = null;
     }
-    if (operator === null) { // to change for after calc
-        //console.log("2");
+    if (operator === null) {
         operator = op;
         toggleSelected(op, "add");
     }
     else {
-        // changing the operator before selecting a new number
-        //console.log("3");
         toggleSelected(operator, "remove");
         operator = op;
         toggleSelected(op, "add");
     }
-    //console.log(`first num: ${firstNumber}, display val: ${displayValue}`);
 }
 
 function inputEquals() {
@@ -145,8 +133,6 @@ function clearDisplay() {
 }
 
 function calculate() {
-    //console.log(`calculating ${firstNumber} and ${displayValue} using ${operator}`);
-    //console.log(`types are: ${typeof firstNumber}, ${typeof displayValue} and ${typeof operator}`);
     switch (operator) {
         case "+":
             result = Number(firstNumber) + Number(displayValue);
@@ -163,8 +149,14 @@ function calculate() {
         default:
             break;
     }
+    // fixing impricise calculations that fit the calculator:
+    result = parseFloat(result.toPrecision(maxNumbers));
+    if (result.toString().length > maxNumbers && maxNumbers > 6) {
+        // long numbers converted to exponential
+        result = result.toPrecision(maxNumbers - 4);
+    }
     console.log(`${firstNumber} ${operator} ${displayValue} = ${result}`);
-    displayValue = result;
+    displayValue = (operator === "/" && displayValue === "0") ? secret : result;
     firstNumber = null;
 }
 
