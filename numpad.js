@@ -49,7 +49,7 @@ function updateHistory() {
     // `${firstNumber} ${operator} ${displayValue} = ${result}`
     let newLog = document.createElement('p');
     newLog.innerHTML = `${firstNumber} ${operator} ${displayValue} = <br><strong>${result}</strong>`;
-    if (historyLog.childElementCount >= 5) {
+    if (historyLog.childElementCount >= 4) {
         historyLog.removeChild(historyLog.firstChild);
     }
     historyLog.appendChild(newLog);
