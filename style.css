@@ -8,8 +8,36 @@ main {
     justify-content: center;
     align-content: center;
     align-items: center;
-    height: 100vh;
     background-color: #454540;
+    min-height: 100vh;
+}
+
+#wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-content: space-around;
+    align-items: center;
+    max-width: 850px;
+    width: 100%;
+    padding: 50px;
+}
+
+#postit {
+    display: block;
+    text-align: right;
+    height: 300px;
+    width: 300px;
+    margin: 50px 0;
+    background-image: linear-gradient(rgb(247, 245, 133), rgb(250,249,181));
+    box-shadow: 0 2px 30px #333;
+    overflow: hidden;
+}
+
+#postit > p {
+    padding: 20px 15px 0 15px;
+    font-family: 'Courier New', Courier, monospace;
+    z-index: 2;
 }
 
 #container {

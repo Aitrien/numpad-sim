@@ -5,6 +5,7 @@ let operator = null;
 let result = null;
 let secret = "🏃‍♂️ 🕳️";
 
+const historyLog = document.getElementById("postit");
 const buttons = document.querySelectorAll("button");
 
 buttons.forEach(button => {
@@ -44,6 +45,16 @@ function updateDisplay() {
 
 updateDisplay();
 
+function updateHistory() {
+    // `${firstNumber} ${operator} ${displayValue} = ${result}`
+    let newLog = document.createElement('p');
+    newLog.innerHTML = `${firstNumber} ${operator} ${displayValue} = <br><strong>${result}</strong>`;
+    if (historyLog.childElementCount >= 5) {
+        historyLog.removeChild(historyLog.firstChild);
+    }
+    historyLog.appendChild(newLog);
+}
+
 function toggleSelected(buttonValue, action) {
     selected = document.querySelector(`button[value="${buttonValue}"]`);
     if (action === "add") {
@@ -52,7 +63,6 @@ function toggleSelected(buttonValue, action) {
     else if (action === "remove") {
         selected.classList.remove('selected');
     }
-    
 }
 
 function inputNumber(num) {
@@ -124,6 +134,16 @@ function inputEquals() {
     }
 }
 
+function doBackspace() {
+    if (displayValue.length === 1 || displayValue === secret) {
+        displayValue = "0";
+    }
+    else {
+        displayValue = displayValue.slice(0, displayValue.length - 1);
+    }
+    updateDisplay();
+}
+
 function clearDisplay() {
     if (operator !== null) toggleSelected(operator, "remove");
     displayValue = "0";
@@ -155,12 +175,16 @@ function calculate() {
         // long numbers converted to exponential
         result = result.toPrecision(maxNumbers - 4);
     }
-    console.log(`${firstNumber} ${operator} ${displayValue} = ${result}`);
+    updateHistory()
     displayValue = (operator === "/" && displayValue === "0") ? secret : result;
     firstNumber = null;
 }
 
 window.addEventListener('keydown', function(e) {
+    if (e.code === "Backspace" && result === null) {
+        doBackspace();
+        return;
+    }
     const key = document.querySelector(`button[data-key="${e.code}"]`);
     if (!key) return; // key not supported
     key.click();
